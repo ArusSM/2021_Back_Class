@@ -51,8 +51,11 @@
 		<tr>
 			<th>부서</th>
 			<th>
-			<input type="text" name="dept" required>
-			</th>
+			<select name="dept">
+				<option value="A">디자인</option>
+				<option value="B">백엔드</option>
+				<option value="C">프론트</option>
+			</select></th>
 		</tr>
 		<tr>
 			<th colspan="2"><input type="submit" value="등록하기"></th>
