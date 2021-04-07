@@ -74,15 +74,53 @@ public class PersonnelDAO {
 				PreparedStatement pstmt = null;
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, vo.getId());
-				pstmt.setString(1, vo.getName());
-				pstmt.setString(1, vo.getDept());
-				pstmt.setString(1, vo.getPosition());
-				pstmt.setString(1, vo.getDuty());
-				pstmt.setString(1, vo.getPhone());
+				pstmt.setString(2, vo.getName());
+				pstmt.setString(3, vo.getDept());
+				pstmt.setString(4, vo.getPosition());
+				pstmt.setString(5, vo.getDuty());
+				pstmt.setString(6, vo.getPhone());
+				i = pstmt.executeUpdate();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		return i;
+	}
+	
+	public int perUpdate(PersonnelVO vo) {
+		int i = 0;
+			try {
+				String sql = "update personnel set name = ?, dept = ?, position = ?, duty = ?, phone = ? where id = ? ";
+				Connection conn = JDBCUtil.getConnection();
+				PreparedStatement pstmt = null;
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, vo.getName());
+				pstmt.setString(2, vo.getDept());
+				pstmt.setString(3, vo.getPosition());
+				pstmt.setString(4, vo.getDuty());
+				pstmt.setString(5, vo.getPhone());
+				pstmt.setString(6, vo.getId());
+				i = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return i;
+	}
+	
+	public int perDelete(String id, String name) {
+		int i = 0;
+		try {
+			String sql = "delete from personnel where id = ? and name = ?";
+			Connection conn = JDBCUtil.getConnection();
+			PreparedStatement pstmt = null;
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, name);
+			i = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+	}
 		return i;
 	}
 }
